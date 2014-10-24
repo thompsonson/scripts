@@ -48,8 +48,7 @@ sub pretty_print(){
 		my $bytest= $bkdata{$source}{'file_tran_size'}/1000000; # convert to MB
 		$source =~ s/^[^\@]+\@//; # remove username
 
-     	$output = $output . "[\"shedpi\", \"$source\", \"$files\",\"$filest\", \"$bytes\", \"$bytest\", \"$filelistgentime\",\"$filelistxfertime\"]\n,";
-		
+		$output = $output . "[\"shedpi\", \"$source\", \"$files\",\"$filest\", \"$bytes\", \"$bytest\", \"$filelistgentime\",\"$filelistxfertime\"]\n,";
 	}
 	$o = chop($output);
 	print $output;
@@ -118,16 +117,15 @@ while (my $line = nextLine(\@rsnapout)){
 if(scalar @errors > 0){
 	my $output = "";
 
-    print "[{\"name\": \"rsnapshot-error\",\n";
-    print "\"columns\": [\"host\",\"error\"],\n";
-    print "\"points\": [\n";
+	print "[{\"name\": \"rsnapshot-error\",\n";
+	print "\"columns\": [\"host\",\"error\"],\n";
+	print "\"points\": [\n";
 	print "[\"shedpi\",\"";
 	$output = join(",",@errors);
 	chomp($output);
 	print $output;
 	print "\"]\n";
-    print "]}]\n";
-
+	print "]}]\n";
 } else {
 	pretty_print();
 }
